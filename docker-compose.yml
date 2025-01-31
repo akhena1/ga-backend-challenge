@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_1
+    volumes:
+      - .:/usr/src/ga-backend-challenge
+      - /usr/src/ga-backend-challenge/node_modules
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+  db:
+    image: postgres:17
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: ga-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+volumes:
+  postgres_data:
