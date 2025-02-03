@@ -1,1 +1,1 @@
-npm test && npx lint-staged
+npm run test:e2e && npm run test:unit && npx lint-staged
