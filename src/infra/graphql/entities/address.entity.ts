@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { Address } from 'src/domain/entities/address';
+import { Address } from '../../../domain/entities/address';
 
 @ObjectType('Address')
 @Entity('Address')

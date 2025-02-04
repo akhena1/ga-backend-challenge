@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { Purchase } from 'src/domain/entities/purchase';
+import { Purchase } from '../../../domain/entities/purchase';
 
 @ObjectType('Purchase')
 @Entity('Purchase')

@@ -6,20 +6,24 @@ import { PurchaseEntity } from './purchase.entity';
 @ObjectType('User')
 @Entity('User')
 export class UserEntity {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
+
+  @Field({ nullable: true })
+  @Column({ default: false })
+  disabled?: boolean;
 
   @Field(() => [AddressEntity], { nullable: true })
   @OneToMany(() => AddressEntity, (address) => address.user)

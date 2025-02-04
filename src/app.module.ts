@@ -3,9 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './infra/graphql/resolvers/user/user.module';
+import { ProvidersModule } from './infra/providers/providers.module';
 
 @Module({
   imports: [
+    ProvidersModule,
     UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
