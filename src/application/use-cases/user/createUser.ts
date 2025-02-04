@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import {
   ErrorMessages,
   SuccessMessages,
-} from '../../domain/contracts/base/baseMessages';
-import { BaseUseCase } from '../../domain/contracts/base/baseUseCase';
-import { BaseResponse } from '../../domain/contracts/http/baseResponse';
-import { IUserRepository } from '../../domain/contracts/repositories/userRepository.interface';
-import { User } from '../../domain/entities/user';
-import { IHashProvider } from '../../domain/contracts/providers/hash';
+} from '../../../domain/contracts/base/baseMessages';
+import { BaseUseCase } from '../../../domain/contracts/base/baseUseCase';
+import { BaseResponse } from '../../../domain/contracts/http/baseResponse';
+import { IHashProvider } from '../../../domain/contracts/providers/hash';
+import { IUserRepository } from '../../../domain/contracts/repositories/userRepository.interface';
+import { User } from '../../../domain/entities/user';
 
 @Injectable()
 export class CreateUser implements BaseUseCase {
@@ -20,9 +20,7 @@ export class CreateUser implements BaseUseCase {
     const user = await this.userRepository.findOneByEmail(params.email);
 
     if (user) {
-      return {
-        message: ErrorMessages.userAlreadyExists,
-      };
+      return new ConflictException(ErrorMessages.userAlreadyExists);
     }
 
     const hashedPassword = await this.hashGenerator.generateHash(

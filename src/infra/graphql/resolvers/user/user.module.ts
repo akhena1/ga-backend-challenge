@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UserRepository } from '../../../database/repository/user.repository';
-import { UserQuery } from './queries/user-query.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../../entities/user.entity';
+import { CreateUser } from '../../../../application/use-cases/user/createUser';
 import { IUserRepository } from '../../../../domain/contracts/repositories/userRepository.interface';
-import { UserMutation } from './mutations/user-mutation.resolver';
-import { CreateUser } from '../../../../application/use-cases/createUser';
+import { UserRepository } from '../../../database/repository/user.repository';
+import { UserEntity } from '../../entities/user.entity';
+import { CreateUserResolver } from './mutations/createUser/createUser.resolver';
+import { UserQuery } from './queries/getUser.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -14,7 +14,7 @@ import { CreateUser } from '../../../../application/use-cases/createUser';
       provide: IUserRepository,
       useClass: UserRepository,
     },
-    UserMutation,
+    CreateUserResolver,
     UserQuery,
     CreateUser,
     UserRepository,

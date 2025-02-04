@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { IUserRepository } from '../../../domain/contracts/repositories/userRepository.interface';
 import { UserEntity } from '../../graphql/entities/user.entity';
-import { CreateUserInput } from '../../graphql/resolvers/user/mutations/inputs/createUserInput';
-import { Repository } from 'typeorm';
+import { CreateUserInput } from '../../graphql/resolvers/user/mutations/createUser/inputs/createUser.input';
 
 @Injectable()
 export class UserRepository implements IUserRepository {

@@ -4,9 +4,11 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './infra/graphql/resolvers/user/user.module';
 import { ProvidersModule } from './infra/providers/providers.module';
+import { AuthModule } from './infra/providers/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     ProvidersModule,
     UserModule,
     TypeOrmModule.forRoot({
