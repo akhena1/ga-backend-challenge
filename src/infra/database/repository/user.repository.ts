@@ -4,9 +4,12 @@ import { Repository } from 'typeorm';
 import { IUserRepository } from '../../../domain/contracts/repositories/userRepository.interface';
 import { UserEntity } from '../../graphql/entities/user.entity';
 import { CreateUserInput } from '../../graphql/resolvers/user/mutations/createUser/inputs/createUser.input';
+import { instanceToPlain } from 'class-transformer';
 
 @Injectable()
-export class UserRepository implements IUserRepository {
+export class UserRepository
+  implements IUserRepository<UserEntity | UserEntity[]>
+{
   constructor(
     @InjectRepository(UserEntity)
     private readonly repository: Repository<UserEntity>,
@@ -24,5 +27,11 @@ export class UserRepository implements IUserRepository {
     return await this.repository.findOneBy({
       email,
     });
+  }
+
+  async findAll(): Promise<UserEntity[]> {
+    const users = await this.repository.find();
+    const plainUsers = instanceToPlain(users);
+    return plainUsers as UserEntity[];
   }
 }

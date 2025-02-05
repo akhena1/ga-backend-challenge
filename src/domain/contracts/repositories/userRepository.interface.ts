@@ -1,6 +1,7 @@
 import { User } from '../../entities/user';
 
-export abstract class IUserRepository {
+export abstract class IUserRepository<T = any> {
   abstract create(data: Partial<User>): Promise<{ id: string }>;
-  abstract findOneByEmail(id: string);
+  abstract findOneByEmail(email: string): Promise<T>;
+  abstract findAll(): Promise<T>;
 }

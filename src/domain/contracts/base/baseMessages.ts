@@ -7,4 +7,5 @@ export const ErrorMessages = {
     'E-mail ja cadastrado. Use um e-mail diferente ou entre em contato com o suporte',
   internalServerError: 'Erro no servidor',
   invalidEmailOrPassword: 'Email ou senha inválidos.',
+  userNotFound: 'Usuário não encontrado',
 };
