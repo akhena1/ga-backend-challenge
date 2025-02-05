@@ -8,4 +8,6 @@ export const ErrorMessages = {
   internalServerError: 'Erro no servidor',
   invalidEmailOrPassword: 'Email ou senha inválidos.',
   userNotFound: 'Usuário não encontrado',
+  missingToken: 'Token não fornecido',
+  invalidToken: 'Token inválido ou expirado.',
 };

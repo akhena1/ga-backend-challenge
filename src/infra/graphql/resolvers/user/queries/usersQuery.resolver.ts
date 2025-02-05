@@ -1,7 +1,7 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { UserEntity } from '../../../entities/user.entity';
-import { GetUsers } from 'src/application/use-cases/user/getUsers';
-import { GetUserByEmail } from 'src/application/use-cases/user/getUserByEmail';
+import { GetUsers } from '../../../../../application/use-cases/user/getUsers';
+import { GetUserByEmail } from '../../../../../application/use-cases/user/getUserByEmail';
 
 @Resolver(() => UserEntity)
 export class UserQuery {

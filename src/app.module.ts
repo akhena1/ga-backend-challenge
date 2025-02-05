@@ -1,16 +1,15 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './infra/graphql/resolvers/user/user.module';
-import { ProvidersModule } from './infra/providers/providers.module';
 import { AuthModule } from './infra/providers/auth/auth.module';
+import { ProvidersModule } from './infra/providers/providers.module';
 
 @Module({
   imports: [
-    AuthModule,
-    ProvidersModule,
-    UserModule,
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'postgres-db',
@@ -25,6 +24,9 @@ import { AuthModule } from './infra/providers/auth/auth.module';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
+    AuthModule,
+    ProvidersModule,
+    UserModule,
   ],
 })
 export class AppModule {}
