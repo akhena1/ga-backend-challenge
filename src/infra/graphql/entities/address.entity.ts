@@ -12,6 +12,14 @@ export class AddressEntity implements Address {
 
   @Field()
   @Column()
+  street: string;
+
+  @Field()
+  @Column()
+  number: number;
+
+  @Field()
+  @Column()
   zipCode: string;
 
   @Field()
@@ -20,7 +28,11 @@ export class AddressEntity implements Address {
 
   @Field()
   @Column()
-  uf: string;
+  state: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  complement?: string;
 
   @Field(() => UserEntity)
   @ManyToOne(() => UserEntity, (user) => user.addresses, {
