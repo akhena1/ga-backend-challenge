@@ -1,0 +1,12 @@
+import { Field, ObjectType } from '@nestjs/graphql';
+import { BaseResponse } from '../../../../../../../domain/contracts/http/baseResponse';
+import { AddressEntity } from '../../../../../entities/address.entity';
+
+@ObjectType()
+export class DeleteAddressResponse implements BaseResponse<AddressEntity> {
+  @Field()
+  message: string;
+
+  @Field({ nullable: true })
+  data?: AddressEntity;
+}

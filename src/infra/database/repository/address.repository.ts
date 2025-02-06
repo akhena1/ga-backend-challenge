@@ -46,6 +46,6 @@ export class AddressRepository
   }
 
   async deleteAddress(id: string): Promise<DeleteResult> {
-    throw new NotImplementedException('id', id);
+    return await this.repository.delete({ id });
   }
 }

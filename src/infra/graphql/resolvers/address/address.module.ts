@@ -12,6 +12,8 @@ import { GetAddressesByUserId } from '../../../../application/use-cases/address/
 import { AddressQueryResolver } from './queries/addressQuery.resolver';
 import { UpdateAddressResolver } from './mutations/updateAddress/updateAddress.resolver';
 import { UpdateAddress } from '../../../../application/use-cases/address/updateAddress';
+import { DeleteAddress } from '../../../../application/use-cases/address/deleteAddress';
+import { DeleteAddressResolver } from './mutations/deleteAddress/deleteAddress.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AddressEntity, UserEntity])],
@@ -27,8 +29,10 @@ import { UpdateAddress } from '../../../../application/use-cases/address/updateA
     CreateAddressResolver,
     AddressQueryResolver,
     UpdateAddressResolver,
+    DeleteAddressResolver,
     CreateAddress,
     UpdateAddress,
+    DeleteAddress,
     GetAddressesByUserId,
   ],
 })

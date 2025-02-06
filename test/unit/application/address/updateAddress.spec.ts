@@ -18,7 +18,6 @@ describe('Unit tests', () => {
       let updateAddressUseCase: UpdateAddress;
       const addressRepositoryStub = sinon.createStubInstance(AddressRepository);
 
-
       beforeAll(async () => {
         const moduleFixture = await Test.createTestingModule({
           providers: [
