@@ -3,16 +3,16 @@ import { Test } from '@nestjs/testing';
 import { hash } from 'bcryptjs';
 import * as sinon from 'sinon';
 import { v1 as uuid } from 'uuid';
-import { CreateUser } from '../../../src/application/use-cases/user/createUser';
+import { CreateUser } from '../../../../src/application/use-cases/user/createUser';
 import {
   ErrorMessages,
   SuccessMessages,
-} from '../../../src/domain/contracts/base/baseMessages';
-import { IHashProvider } from '../../../src/domain/contracts/providers/hash';
-import { IUserRepository } from '../../../src/domain/contracts/repositories/userRepository.interface';
-import { UserRepository } from '../../../src/infra/database/repository/user.repository';
-import { UserEntity } from '../../../src/infra/graphql/entities/user.entity';
-import BCryptHashProvider from '../../../src/infra/providers/hash/bcryptHashProvider';
+} from '../../../../src/domain/contracts/base/baseMessages';
+import { IHashProvider } from '../../../../src/domain/contracts/providers/hash';
+import { IUserRepository } from '../../../../src/domain/contracts/repositories/userRepository.interface';
+import { UserRepository } from '../../../../src/infra/database/repository/user.repository';
+import { UserEntity } from '../../../../src/infra/graphql/entities/user.entity';
+import BCryptHashProvider from '../../../../src/infra/providers/hash/bcryptHashProvider';
 
 describe('Unit tests', () => {
   describe('Application', () => {

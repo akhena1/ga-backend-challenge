@@ -1,11 +1,11 @@
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as sinon from 'sinon';
-import { GetUserByEmail } from '../../../src/application/use-cases/user/getUserByEmail';
-import { ErrorMessages } from '../../../src/domain/contracts/base/baseMessages';
-import { IUserRepository } from '../../../src/domain/contracts/repositories/userRepository.interface';
-import { UserRepository } from '../../../src/infra/database/repository/user.repository';
-import { UserEntity } from '../../../src/infra/graphql/entities/user.entity';
+import { GetUserByEmail } from '../../../../src/application/use-cases/user/getUserByEmail';
+import { ErrorMessages } from '../../../../src/domain/contracts/base/baseMessages';
+import { IUserRepository } from '../../../../src/domain/contracts/repositories/userRepository.interface';
+import { UserRepository } from '../../../../src/infra/database/repository/user.repository';
+import { UserEntity } from '../../../../src/infra/graphql/entities/user.entity';
 
 describe('Unit tests', () => {
   describe('Application', () => {

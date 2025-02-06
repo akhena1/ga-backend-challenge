@@ -5,11 +5,11 @@ import { v1 as uuid } from 'uuid';
 import {
   ErrorMessages,
   SuccessMessages,
-} from '../../../src/domain/contracts/base/baseMessages';
-import { IUserRepository } from '../../../src/domain/contracts/repositories/userRepository.interface';
-import { UserRepository } from '../../../src/infra/database/repository/user.repository';
-import { UserEntity } from '../../../src/infra/graphql/entities/user.entity';
-import { DeleteUser } from '../../../src/application/use-cases/user/deleteUser';
+} from '../../../../src/domain/contracts/base/baseMessages';
+import { IUserRepository } from '../../../../src/domain/contracts/repositories/userRepository.interface';
+import { UserRepository } from '../../../../src/infra/database/repository/user.repository';
+import { UserEntity } from '../../../../src/infra/graphql/entities/user.entity';
+import { DeleteUser } from '../../../../src/application/use-cases/user/deleteUser';
 
 describe('Unit tests', () => {
   describe('Application', () => {
