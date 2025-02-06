@@ -5,6 +5,7 @@ import { IUserRepository } from '../../../domain/contracts/repositories/userRepo
 import { UserEntity } from '../../graphql/entities/user.entity';
 import { CreateUserInput } from '../../graphql/resolvers/user/mutations/createUser/inputs/createUser.input';
 import { instanceToPlain } from 'class-transformer';
+import { User } from '../../../domain/entities/user';
 
 @Injectable()
 export class UserRepository
@@ -23,6 +24,12 @@ export class UserRepository
     };
   }
 
+  async findOneById(id: string): Promise<UserEntity> {
+    return await this.repository.findOneBy({
+      id,
+    });
+  }
+
   async findOneByEmail(email: string): Promise<UserEntity> {
     return await this.repository.findOneBy({
       email,
@@ -33,5 +40,9 @@ export class UserRepository
     const users = await this.repository.find();
     const plainUsers = instanceToPlain(users);
     return plainUsers as UserEntity[];
+  }
+
+  async updateUser(criteria: unknown, data: Partial<User>) {
+    await this.repository.update(criteria, data);
   }
 }

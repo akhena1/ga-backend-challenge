@@ -2,7 +2,7 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { CreateUser } from '../../../../../../application/use-cases/user/createUser';
 import { UserEntity } from '../../../../entities/user.entity';
 import { CreateUserInput } from './inputs/createUser.input';
-import { CreateUserResponse } from './outputs/createUserResponse';
+import { CreateUserResponse } from './outputs/createUser.response';
 
 @Resolver(() => UserEntity)
 export class CreateUserResolver {

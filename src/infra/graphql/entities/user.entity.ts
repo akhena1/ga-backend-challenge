@@ -22,10 +22,6 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Field({ nullable: true })
-  @Column({ default: false })
-  disabled?: boolean;
-
   @Field(() => [AddressEntity], { nullable: true })
   @OneToMany(() => AddressEntity, (address) => address.user)
   addresses?: AddressEntity[];

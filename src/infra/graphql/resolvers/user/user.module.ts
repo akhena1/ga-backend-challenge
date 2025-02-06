@@ -9,6 +9,8 @@ import { UserQuery } from './queries/usersQuery.resolver';
 import { GetUsers } from '../../../../application/use-cases/user/getUsers';
 import { GetUserByEmail } from '../../../../application/use-cases/user/getUserByEmail';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserResolver } from './mutations/updateUsers/updateUser.resolver';
+import { UpdateUser } from '../../../../application/use-cases/user/updateUser';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -18,8 +20,10 @@ import { JwtService } from '@nestjs/jwt';
       useClass: UserRepository,
     },
     CreateUserResolver,
+    UpdateUserResolver,
     UserQuery,
     CreateUser,
+    UpdateUser,
     GetUsers,
     GetUserByEmail,
     UserRepository,
