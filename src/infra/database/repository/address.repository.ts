@@ -1,13 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { AddressEntity } from '../../graphql/entities/address.entity';
 import { UserEntity } from '../../graphql/entities/user.entity';
 import { instanceToPlain } from 'class-transformer';
+import { IAddressRepository } from '../../../domain/contracts/repositories/addressRepository.inteface';
 
 @Injectable()
-//   implements IAddressRepository<AddressEntity | AddressEntity[]>
-export class AddressRepository {
+export class AddressRepository
+  implements IAddressRepository<AddressEntity | AddressEntity[]>
+{
   constructor(
     @InjectRepository(AddressEntity)
     private readonly repository: Repository<AddressEntity>,
@@ -30,28 +32,20 @@ export class AddressRepository {
       user: { id },
     });
 
-    const plainAddresses = instanceToPlain(addresses)
+    const plainAddresses = instanceToPlain(addresses);
 
-    return plainAddresses as AddressEntity[]
+    return plainAddresses as AddressEntity[];
   }
 
-  //   async findOneByEmail(email: string): Promise<UserEntity> {
-  //     return await this.repository.findOneBy({
-  //       email,
-  //     });
-  //   }
+  async findOneById(id: string): Promise<AddressEntity | AddressEntity[]> {
+    return await this.repository.findOneBy({ id });
+  }
 
-  //   async findAll(): Promise<UserEntity[]> {
-  //     const users = await this.repository.find();
-  //     const plainUsers = instanceToPlain(users);
-  //     return plainUsers as UserEntity[];
-  //   }
+  async updateAddress(id: string, data: Partial<AddressEntity>) {
+    await this.repository.update(id, data);
+  }
 
-  //   async updateUser(criteria: unknown, data: Partial<User>) {
-  //     await this.repository.update(criteria, data);
-  //   }
-
-  //   async deleteUser(id: string): Promise<DeleteResult> {
-  //     return await this.repository.delete({ id });
-  //   }
+  async deleteAddress(id: string): Promise<DeleteResult> {
+    throw new NotImplementedException('id', id);
+  }
 }

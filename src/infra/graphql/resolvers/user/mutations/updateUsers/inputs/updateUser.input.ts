@@ -2,7 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { IsObject, IsString, IsUUID } from 'class-validator';
 
 @InputType()
-class DataInput {
+class UpdateUserDataInput {
   @Field()
   @IsString()
   name: string;
@@ -16,5 +16,5 @@ export class UpdateUserInput {
 
   @Field()
   @IsObject()
-  data: DataInput;
+  data: UpdateUserDataInput;
 }

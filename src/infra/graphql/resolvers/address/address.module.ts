@@ -10,6 +10,8 @@ import { UserRepository } from '../../../database/repository/user.repository';
 import { UserEntity } from '../../entities/user.entity';
 import { GetAddressesByUserId } from '../../../../application/use-cases/address/getAddressByUserId';
 import { AddressQueryResolver } from './queries/addressQuery.resolver';
+import { UpdateAddressResolver } from './mutations/updateAddress/updateAddress.resolver';
+import { UpdateAddress } from '../../../../application/use-cases/address/updateAddress';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AddressEntity, UserEntity])],
@@ -24,8 +26,10 @@ import { AddressQueryResolver } from './queries/addressQuery.resolver';
     },
     CreateAddressResolver,
     AddressQueryResolver,
+    UpdateAddressResolver,
     CreateAddress,
-    GetAddressesByUserId
+    UpdateAddress,
+    GetAddressesByUserId,
   ],
 })
 export class AddressModule {}
