@@ -2,21 +2,22 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as sinon from 'sinon';
 import { v1 as uuid } from 'uuid';
-import { GetAddressesByUserId } from '../../../../src/application/use-cases/address/getAddressByUserId';
+import { GetPurchasesByUserId } from '../../../../src/application/use-cases/purchase/getPurchasesByUserId';
 import { ErrorMessages } from '../../../../src/domain/contracts/base/baseMessages';
-import { IAddressRepository } from '../../../../src/domain/contracts/repositories/addressRepository.inteface';
+import { IPurchaseRepository } from '../../../../src/domain/contracts/repositories/purchaseRepository.interface';
 import { IUserRepository } from '../../../../src/domain/contracts/repositories/userRepository.interface';
-import { AddressRepository } from '../../../../src/infra/database/repository/address.repository';
+import { PurchaseRepository } from '../../../../src/infra/database/repository/purchase.repository';
 import { UserRepository } from '../../../../src/infra/database/repository/user.repository';
+import { PurchaseEntity } from '../../../../src/infra/graphql/entities/purchase.entity';
 import { UserEntity } from '../../../../src/infra/graphql/entities/user.entity';
-import { AddressEntity } from 'src/infra/graphql/entities/address.entity';
 
 describe('Unit tests', () => {
   describe('Application', () => {
-    describe('Get Addresses By User', () => {
+    describe('Get Purchases By User', () => {
       let app: INestApplication;
-      let getAddressesByUserUseCase: GetAddressesByUserId;
-      const addressRepositoryStub = sinon.createStubInstance(AddressRepository);
+      let getPurchasesByUserUseCase: GetPurchasesByUserId;
+      const purchasesRepositoryStub =
+        sinon.createStubInstance(PurchaseRepository);
 
       const userRepositoryStub =
         sinon.createStubInstance<IUserRepository>(UserRepository);
@@ -24,14 +25,14 @@ describe('Unit tests', () => {
       beforeAll(async () => {
         const moduleFixture = await Test.createTestingModule({
           providers: [
-            GetAddressesByUserId,
+            GetPurchasesByUserId,
             { provide: IUserRepository, useValue: userRepositoryStub },
-            { provide: IAddressRepository, useValue: addressRepositoryStub },
+            { provide: IPurchaseRepository, useValue: purchasesRepositoryStub },
           ],
         }).compile();
 
         app = moduleFixture.createNestApplication();
-        getAddressesByUserUseCase = app.get(GetAddressesByUserId);
+        getPurchasesByUserUseCase = app.get(GetPurchasesByUserId);
         await app.init();
       });
 
@@ -39,7 +40,7 @@ describe('Unit tests', () => {
         await app.close();
       });
 
-      it('Should successfully return addresses when userId exists', async () => {
+      it('Should successfully return purchases when userId exists', async () => {
         // Given
         const id = uuid();
         const user: UserEntity = {
@@ -49,30 +50,26 @@ describe('Unit tests', () => {
           password: 'hashedPass',
         };
 
-        const addresses = [
+        const purchases: PurchaseEntity[] = [
           {
-            street: 'RUA',
-            number: 1200,
-            city: 'POÁ',
-            state: 'SAO PAULO',
-            zipCode: '08673-220',
+            id: '1',
+            totalAmount: '190,90',
+            purchaseDate: new Date('2025-02-06T07:10:06.089Z'),
           },
           {
-            street: 'RUA  2',
-            number: 12300,
-            city: 'SUZANO',
-            state: 'SAO PAULO',
-            zipCode: '08551-2120',
+            id: '2',
+            totalAmount: '190,90',
+            purchaseDate: new Date('2025-02-06T07:10:06.089Z'),
           },
-        ] as AddressEntity[];
+        ] as PurchaseEntity[];
 
         // When
         userRepositoryStub.findOneById.resolves(user);
-        addressRepositoryStub.findByUserId.resolves(addresses);
-        const usecase = await getAddressesByUserUseCase.execute(id);
+        purchasesRepositoryStub.findByUserId.resolves(purchases);
+        const usecase = await getPurchasesByUserUseCase.execute(id);
 
         // Then
-        expect(usecase).toBe(addresses);
+        expect(usecase).toBe(purchases);
       });
 
       it('Should return error when userId does not exists', async () => {
@@ -81,13 +78,13 @@ describe('Unit tests', () => {
 
         // When
         userRepositoryStub.findOneById.resolves(false);
-        const usecase = await getAddressesByUserUseCase.execute(id);
+        const usecase = await getPurchasesByUserUseCase.execute(id);
 
         // Then
         expect(usecase.message).toBe(ErrorMessages.userNotFound);
       });
 
-      it('Should return an empty array when user does not have any address', async () => {
+      it('Should return an empty array when user does not have any purchases', async () => {
         // Given
         const id = uuid();
         const user: UserEntity = {
@@ -96,14 +93,14 @@ describe('Unit tests', () => {
           name: 'Nome',
           password: 'hashedPass',
         };
-        const addresses = [];
+        const purchases = [];
         // When
         userRepositoryStub.findOneById.resolves(user);
-        addressRepositoryStub.findByUserId.resolves(addresses);
-        const usecase = await getAddressesByUserUseCase.execute(id);
+        purchasesRepositoryStub.findByUserId.resolves(purchases);
+        const usecase = await getPurchasesByUserUseCase.execute(id);
 
         // Then
-        expect(usecase).toBe(addresses);
+        expect(usecase).toBe(purchases);
       });
     });
   });
