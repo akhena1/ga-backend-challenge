@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreatePurchase } from '../../../../application/use-cases/purchase/createPurchase';
 import { DeletePurchase } from '../../../../application/use-cases/purchase/deletePurchase';
@@ -10,8 +11,8 @@ import { UserRepository } from '../../../database/repository/user.repository';
 import { PurchaseEntity } from '../../entities/purchase.entity';
 import { UserEntity } from '../../entities/user.entity';
 import { CreatePurchaseResolver } from './mutations/createPurchase/createPurchase.resolver';
-import { PurchaseQueryResolver } from './queries/purchaseQuery.resolver';
 import { DeletePurchaseResolver } from './mutations/deletePurchase/deletePurchase.resolver';
+import { PurchaseQueryResolver } from './queries/purchaseQuery.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PurchaseEntity, UserEntity])],
@@ -29,7 +30,8 @@ import { DeletePurchaseResolver } from './mutations/deletePurchase/deletePurchas
     DeletePurchaseResolver,
     CreatePurchase,
     GetPurchasesByUserId,
-    DeletePurchase
+    DeletePurchase,
+    JwtService,
   ],
 })
 export class PurchaseModule {}
