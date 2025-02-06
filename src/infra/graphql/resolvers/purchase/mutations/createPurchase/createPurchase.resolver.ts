@@ -1,8 +1,8 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { PurchaseEntity } from '../../../../entities/purchase.entity';
 import { CreatePurchase } from '../../../../../../application/use-cases/purchase/createPurchase';
-import { CreatePurchaseInput } from './input/createPurchase.input';
-import { CreatePurchaseResponse } from './output/createPurchase.response';
+import { PurchaseEntity } from '../../../../entities/purchase.entity';
+import { CreatePurchaseInput } from './inputs/createPurchase.input';
+import { CreatePurchaseResponse } from './outputs/createPurchase.response';
 
 @Resolver(() => PurchaseEntity)
 export class CreatePurchaseResolver {

@@ -1,15 +1,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CreatePurchase } from '../../../../application/use-cases/purchase/createPurchase';
+import { DeletePurchase } from '../../../../application/use-cases/purchase/deletePurchase';
+import { GetPurchasesByUserId } from '../../../../application/use-cases/purchase/getPurchasesByUserId';
 import { IPurchaseRepository } from '../../../../domain/contracts/repositories/purchaseRepository.interface';
 import { IUserRepository } from '../../../../domain/contracts/repositories/userRepository.interface';
 import { PurchaseRepository } from '../../../database/repository/purchase.repository';
 import { UserRepository } from '../../../database/repository/user.repository';
-import { UserEntity } from '../../entities/user.entity';
 import { PurchaseEntity } from '../../entities/purchase.entity';
-import { CreatePurchase } from '../../../../application/use-cases/purchase/createPurchase';
+import { UserEntity } from '../../entities/user.entity';
 import { CreatePurchaseResolver } from './mutations/createPurchase/createPurchase.resolver';
 import { PurchaseQueryResolver } from './queries/purchaseQuery.resolver';
-import { GetPurchasesByUserId } from '../../../../application/use-cases/purchase/getPurchasesByUserId';
+import { DeletePurchaseResolver } from './mutations/deletePurchase/deletePurchase.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PurchaseEntity, UserEntity])],
@@ -24,8 +26,10 @@ import { GetPurchasesByUserId } from '../../../../application/use-cases/purchase
     },
     CreatePurchaseResolver,
     PurchaseQueryResolver,
+    DeletePurchaseResolver,
     CreatePurchase,
-    GetPurchasesByUserId
+    GetPurchasesByUserId,
+    DeletePurchase
   ],
 })
 export class PurchaseModule {}

@@ -18,11 +18,11 @@ export class DeleteAddress implements BaseUseCase {
       return new NotFoundException(ErrorMessages.addressNotFound);
     }
 
-    const updatedAddress = await this.addressRepository.deleteAddress(params.id);
+    const deletedAddress = await this.addressRepository.deleteAddress(params.id);
 
     return {
       message: SuccessMessages.addressDeleted,
-      data: updatedAddress,
+      data: deletedAddress,
     };
   }
 }

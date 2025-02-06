@@ -5,7 +5,8 @@ export const SuccessMessages = {
   addressCreated: 'Endereço cadastrado com sucesso',
   addressUpdated: 'Endereço atualizado com sucesso',
   addressDeleted: 'Endereço deletado com sucesso',
-  purchaseCreated: 'Compra registrada com sucesso'
+  purchaseCreated: 'Compra registrada com sucesso',
+  purchaseDeleted: 'Compra deletada com sucesso'
 };
 
 export const ErrorMessages = {
@@ -15,6 +16,7 @@ export const ErrorMessages = {
   invalidEmailOrPassword: 'Email ou senha inválidos.',
   userNotFound: 'Usuário não encontrado',
   addressNotFound: 'Endereço não encontrado',
+  purchaseNotFound: 'Compra não encontrada',
   missingToken: 'Token não fornecido',
   invalidToken: 'Token inválido ou expirado.',
 };
