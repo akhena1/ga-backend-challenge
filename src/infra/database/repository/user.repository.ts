@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { IUserRepository } from '../../../domain/contracts/repositories/userRepository.interface';
 import { UserEntity } from '../../graphql/entities/user.entity';
 import { CreateUserInput } from '../../graphql/resolvers/user/mutations/createUser/inputs/createUser.input';
@@ -44,5 +44,9 @@ export class UserRepository
 
   async updateUser(criteria: unknown, data: Partial<User>) {
     await this.repository.update(criteria, data);
+  }
+
+  async deleteUser(id: string): Promise<DeleteResult> {
+    return await this.repository.delete({ id });
   }
 }

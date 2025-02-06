@@ -11,6 +11,8 @@ import { GetUserByEmail } from '../../../../application/use-cases/user/getUserBy
 import { JwtService } from '@nestjs/jwt';
 import { UpdateUserResolver } from './mutations/updateUsers/updateUser.resolver';
 import { UpdateUser } from '../../../../application/use-cases/user/updateUser';
+import { DeleteUserResolver } from './mutations/deleteUser/deleteUser.resolver';
+import { DeleteUser } from '../../../../application/use-cases/user/deleteUser';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -21,9 +23,11 @@ import { UpdateUser } from '../../../../application/use-cases/user/updateUser';
     },
     CreateUserResolver,
     UpdateUserResolver,
+    DeleteUserResolver,
     UserQuery,
     CreateUser,
     UpdateUser,
+    DeleteUser,
     GetUsers,
     GetUserByEmail,
     UserRepository,

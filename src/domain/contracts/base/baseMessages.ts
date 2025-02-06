@@ -1,6 +1,7 @@
 export const SuccessMessages = {
   userCreated: 'Usuário criado com sucesso',
   userUpdated: 'Usuário atualizado com sucesso',
+  userDeleted: 'Usuário deletado com sucesso',
 };
 
 export const ErrorMessages = {
