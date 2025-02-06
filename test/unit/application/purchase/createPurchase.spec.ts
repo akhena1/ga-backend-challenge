@@ -11,7 +11,7 @@ import { IPurchaseRepository } from '../../../../src/domain/contracts/repositori
 import { IUserRepository } from '../../../../src/domain/contracts/repositories/userRepository.interface';
 import { PurchaseRepository } from '../../../../src/infra/database/repository/purchase.repository';
 import { UserRepository } from '../../../../src/infra/database/repository/user.repository';
-import { CreatePurchaseInput } from '../../../../src/infra/graphql/resolvers/purchase/mutations/createPurchase/input/createPurchase.input';
+import { CreatePurchaseInput } from '../../../../src/infra/graphql/resolvers/purchase/mutations/createPurchase/inputs/createPurchase.input';
 
 describe('Unit tests', () => {
   describe('Application', () => {

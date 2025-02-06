@@ -48,7 +48,6 @@ describe('Unit tests', () => {
 
         // When
         addressRepositoryStub.findOneById.resolves(address);
-        addressRepositoryStub.updateAddress.resolves();
         const usecase = await deleteAddressUseCase.execute({ id });
 
         // Then
