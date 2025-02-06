@@ -7,6 +7,7 @@ import { UserModule } from './infra/graphql/resolvers/user/user.module';
 import { AuthModule } from './infra/providers/auth/auth.module';
 import { ProvidersModule } from './infra/providers/providers.module';
 import { AddressModule } from './infra/graphql/resolvers/address/address.module';
+import { PurchaseModule } from './infra/graphql/resolvers/purchase/purchase.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { AddressModule } from './infra/graphql/resolvers/address/address.module'
     AuthModule,
     ProvidersModule,
     UserModule,
-    AddressModule
+    AddressModule,
+    PurchaseModule
   ],
 })
 export class AppModule {}

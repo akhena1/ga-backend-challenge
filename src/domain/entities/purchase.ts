@@ -1,5 +1,6 @@
 export interface Purchase {
-  id: string;
-  totalAmount: number;
-  purchaseDate: Date;
+  id?: string;
+  totalAmount: string;
+  purchaseDate?: Date;
+  userId?: string;
 }

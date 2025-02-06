@@ -18,9 +18,9 @@ export class PurchaseEntity implements Purchase {
 
   @Field()
   @Column('decimal', { precision: 10, scale: 2 })
-  totalAmount: number;
+  totalAmount: string;
 
-  @Field()
+  @Field({ nullable: true })
   @CreateDateColumn()
   purchaseDate: Date;
 

@@ -4,7 +4,8 @@ export const SuccessMessages = {
   userDeleted: 'Usuário deletado com sucesso',
   addressCreated: 'Endereço cadastrado com sucesso',
   addressUpdated: 'Endereço atualizado com sucesso',
-  addressDeleted: 'Endereço deletado com sucesso'
+  addressDeleted: 'Endereço deletado com sucesso',
+  purchaseCreated: 'Compra registrada com sucesso'
 };
 
 export const ErrorMessages = {
