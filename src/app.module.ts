@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './infra/graphql/resolvers/user/user.module';
 import { AuthModule } from './infra/providers/auth/auth.module';
 import { ProvidersModule } from './infra/providers/providers.module';
+import { AddressModule } from './infra/graphql/resolvers/address/address.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ProvidersModule } from './infra/providers/providers.module';
     AuthModule,
     ProvidersModule,
     UserModule,
+    AddressModule
   ],
 })
 export class AppModule {}

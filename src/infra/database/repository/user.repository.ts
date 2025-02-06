@@ -5,7 +5,6 @@ import { IUserRepository } from '../../../domain/contracts/repositories/userRepo
 import { UserEntity } from '../../graphql/entities/user.entity';
 import { CreateUserInput } from '../../graphql/resolvers/user/mutations/createUser/inputs/createUser.input';
 import { instanceToPlain } from 'class-transformer';
-import { User } from '../../../domain/entities/user';
 
 @Injectable()
 export class UserRepository
@@ -42,8 +41,8 @@ export class UserRepository
     return plainUsers as UserEntity[];
   }
 
-  async updateUser(criteria: unknown, data: Partial<User>) {
-    await this.repository.update(criteria, data);
+  async updateUser(id: string, data: Partial<UserEntity>) {
+    await this.repository.update(id, data);
   }
 
   async deleteUser(id: string): Promise<DeleteResult> {

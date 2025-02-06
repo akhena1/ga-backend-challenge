@@ -1,9 +1,10 @@
 export interface Address {
-  id: string;
+  id?: string;
   street: string;
   number: number;
   zipCode: string;
   city: string;
   state: string;
   complement?: string;
+  userId?: string;
 }
