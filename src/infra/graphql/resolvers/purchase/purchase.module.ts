@@ -8,6 +8,8 @@ import { UserEntity } from '../../entities/user.entity';
 import { PurchaseEntity } from '../../entities/purchase.entity';
 import { CreatePurchase } from '../../../../application/use-cases/purchase/createPurchase';
 import { CreatePurchaseResolver } from './mutations/createPurchase/createPurchase.resolver';
+import { PurchaseQueryResolver } from './queries/purchaseQuery.resolver';
+import { GetPurchasesByUserId } from '../../../../application/use-cases/purchase/getPurchasesByUserId';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PurchaseEntity, UserEntity])],
@@ -21,7 +23,9 @@ import { CreatePurchaseResolver } from './mutations/createPurchase/createPurchas
       useClass: UserRepository,
     },
     CreatePurchaseResolver,
-    CreatePurchase
+    PurchaseQueryResolver,
+    CreatePurchase,
+    GetPurchasesByUserId
   ],
 })
 export class PurchaseModule {}

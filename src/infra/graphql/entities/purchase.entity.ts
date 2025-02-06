@@ -28,5 +28,5 @@ export class PurchaseEntity implements Purchase {
   @ManyToOne(() => UserEntity, (user) => user.purchases, {
     onDelete: 'CASCADE',
   })
-  user: UserEntity;
+  user?: UserEntity;
 }
