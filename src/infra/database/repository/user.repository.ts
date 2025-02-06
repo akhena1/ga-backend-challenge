@@ -24,19 +24,27 @@ export class UserRepository
   }
 
   async findOneById(id: string): Promise<UserEntity> {
-    return await this.repository.findOneBy({
-      id,
+    const user = await this.repository.findOne({
+      where: { id },
+      relations: ['addresses', 'purchases'],
     });
+
+    return user;
   }
 
   async findOneByEmail(email: string): Promise<UserEntity> {
-    return await this.repository.findOneBy({
-      email,
+    const user = await this.repository.findOne({
+      where: { email },
+      relations: ['addresses', 'purchases'],
     });
+
+    return user;
   }
 
   async findAll(): Promise<UserEntity[]> {
-    const users = await this.repository.find();
+    const users = await this.repository.find({
+      relations: ['addresses', 'purchases'],
+    });
     const plainUsers = instanceToPlain(users);
     return plainUsers as UserEntity[];
   }

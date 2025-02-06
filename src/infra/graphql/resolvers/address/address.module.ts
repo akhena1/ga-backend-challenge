@@ -8,6 +8,8 @@ import { CreateAddress } from '../../../../application/use-cases/address/createA
 import { IUserRepository } from '../../../../domain/contracts/repositories/userRepository.interface';
 import { UserRepository } from '../../../database/repository/user.repository';
 import { UserEntity } from '../../entities/user.entity';
+import { GetAddressesByUserId } from '../../../../application/use-cases/address/getAddressByUserId';
+import { AddressQueryResolver } from './queries/addressQuery.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AddressEntity, UserEntity])],
@@ -21,7 +23,9 @@ import { UserEntity } from '../../entities/user.entity';
       useClass: UserRepository,
     },
     CreateAddressResolver,
+    AddressQueryResolver,
     CreateAddress,
+    GetAddressesByUserId
   ],
 })
 export class AddressModule {}
